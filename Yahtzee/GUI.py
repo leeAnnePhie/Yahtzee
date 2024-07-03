@@ -22,43 +22,43 @@ mainSlotFiveVar = IntVar()
 mainSlotSixVar = IntVar()
 
 # <editor-fold desc="Dice Images">
-Unknown = (Image.open("questionmark.png"))
+Unknown = (Image.open("/Users/42adel-dp-147/Documents/GitHub/Yahtzee/Yahtzee/questionmark.png"))
 resizedUnknown = Unknown.resize((70, 70))
 mainDiceImageUnknown = ImageTk.PhotoImage(resizedUnknown)
 resizedUnknownSmall = Unknown.resize((20, 20))
 mainUnknownsmall = ImageTk.PhotoImage(resizedUnknownSmall)
 
-diceRollOne = (Image.open("dice-six-faces-one.png"))
+diceRollOne = (Image.open("/Users/42adel-dp-147/Documents/GitHub/Yahtzee/Yahtzee/dice-six-faces-one.png"))
 resizedOne = diceRollOne.resize((70, 70))
 mainDiceImageOne = ImageTk.PhotoImage(resizedOne)
 resizedOneSmall = diceRollOne.resize((25, 25))
 mainDiceOnesmall = ImageTk.PhotoImage(resizedOneSmall)
 
-diceRollTwo = (Image.open("dice-six-faces-two.png"))
+diceRollTwo = (Image.open("/Users/42adel-dp-147/Documents/GitHub/Yahtzee/Yahtzee/dice-six-faces-two.png"))
 resizedTwo = diceRollTwo.resize((70, 70))
 mainDiceImageTwo = ImageTk.PhotoImage(resizedTwo)
 resizedTwoSmall = diceRollTwo.resize((25, 25))
 mainDiceTwosmall = ImageTk.PhotoImage(resizedTwoSmall)
 
-diceRollThree = (Image.open("dice-six-faces-three.png"))
+diceRollThree = (Image.open("/Users/42adel-dp-147/Documents/GitHub/Yahtzee/Yahtzee/dice-six-faces-three.png"))
 resizedThree = diceRollThree.resize((70, 70))
 mainDiceImageThree = ImageTk.PhotoImage(resizedThree)
 resizedThreeSmall = diceRollThree.resize((25, 25))
 mainDiceThreesmall = ImageTk.PhotoImage(resizedThreeSmall)
 
-diceRollFour = (Image.open("dice-six-faces-four.png"))
+diceRollFour = (Image.open("/Users/42adel-dp-147/Documents/GitHub/Yahtzee/Yahtzee/dice-six-faces-four.png"))
 resizedFour = diceRollFour.resize((70, 70))
 mainDiceImageFour = ImageTk.PhotoImage(resizedFour)
 resizedFourSmall = diceRollFour.resize((25, 25))
 mainDiceFoursmall = ImageTk.PhotoImage(resizedFourSmall)
 
-diceRollFive = (Image.open("dice-six-faces-five.png"))
+diceRollFive = (Image.open("/Users/42adel-dp-147/Documents/GitHub/Yahtzee/Yahtzee/dice-six-faces-five.png"))
 resizedFive = diceRollFive.resize((70, 70))
 mainDiceImageFive: PhotoImage = ImageTk.PhotoImage(resizedFive)
 resizedFiveSmall = diceRollFive.resize((25, 25))
 mainDiceFivesmall = ImageTk.PhotoImage(resizedFiveSmall)
 
-diceRollSix = (Image.open("dice-six-faces-six.png"))
+diceRollSix = (Image.open("/Users/42adel-dp-147/Documents/GitHub/Yahtzee/Yahtzee/dice-six-faces-five.png"))
 resizedSix = diceRollSix.resize((70, 70))
 mainDiceImageSix = ImageTk.PhotoImage(resizedSix)
 resizedSixSmall = diceRollSix.resize((25, 25))
@@ -97,6 +97,7 @@ def reRollCmd():
             i.configure(image=newDice)
             checkChecks.mainScoreList[number] = rndChoice
             smallDiceList[number] = (blahblah[rndChoice - 1][1])
+        else:
     rerollCounter = rerollCounter - 1
     rerollButton.configure(text="Rerolls Left: " + str(rerollCounter))
     if rerollCounter == 0:
@@ -134,6 +135,7 @@ def confirmButtonCmd():
         finalScore = finalScore + checkChecks.TotalScore
         linearRegression.updateLists()
         linearRegression.showStats()
+        linearRegression.placeholder = []
         selectionCheck.set(0)
         confirmButton.configure(state=DISABLED)
         totalScore.configure(text="Total Score: "+str(finalScore))
