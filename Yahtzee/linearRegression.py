@@ -1,11 +1,18 @@
-import matplotlib.pyplot as plt
-import numpy as np
-import csv
-from scipy import stats
+#import matplotlib.pyplot as plt
+#import numpy as np
+#import csv
+#from scipy import stats
+import checkChecks
 
+placeholder = []
 diceHeld = [] #independent
 roundScore = [] #independent 
 
+def updateLists():
+  for i in placeholder:
+    roundScore.append(checksChecks.TotalScore)
+    diceHeld.append(i)
+  placeholder = []
 
 def visualize(theta, diceHeld, roundScore):
   plt.scatter(diceHeld, roundScore, color = 'g',s = 40)
@@ -38,4 +45,5 @@ def fit(x, y, theta, alpha, iter):
     theta[0] = theta[0] - alpha * b_gradient
   return theta
 
-visualize()
+def showstats():
+  messagebox.askokcancel(message="Your Dice Held is: "+(diceHeld)+"\n and your individual scores are "+(roundScore))

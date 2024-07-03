@@ -5,7 +5,7 @@ import PIL.Image
 from PIL import Image, ImageTk
 from functools import partial
 from tkinter import messagebox
-
+import linearRegression
 from PIL.ImageTk import PhotoImage
 
 rerollCounter = 3
@@ -88,6 +88,7 @@ def reRollCmd():
     for i, x in listOfDicePosition:
         if x.get() == 0:
             keptDice.append(i)
+            linearRegression.placeholder.append(i)
     for i, x in listOfDicePosition:
         if i in keptDice:
             number = listOfDicePosition.index((i, x))
@@ -131,6 +132,8 @@ def confirmButtonCmd():
             y.set(FALSE)
         checkChecks.selectionFunctions[checkSelectionVar]()
         finalScore = finalScore + checkChecks.TotalScore
+        linearRegression.updateLists()
+        linearRegression.showStats()
         selectionCheck.set(0)
         confirmButton.configure(state=DISABLED)
         totalScore.configure(text="Total Score: "+str(finalScore))
