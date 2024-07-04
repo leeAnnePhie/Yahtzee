@@ -58,7 +58,7 @@ mainDiceImageFive: PhotoImage = ImageTk.PhotoImage(resizedFive)
 resizedFiveSmall = diceRollFive.resize((25, 25))
 mainDiceFivesmall = ImageTk.PhotoImage(resizedFiveSmall)
 
-diceRollSix = (Image.open("/Users/42adel-dp-147/Documents/GitHub/Yahtzee/Yahtzee/dice-six-faces-five.png"))
+diceRollSix = (Image.open("/Users/42adel-dp-147/Documents/GitHub/Yahtzee/Yahtzee/dice-six-faces-six.png"))
 resizedSix = diceRollSix.resize((70, 70))
 mainDiceImageSix = ImageTk.PhotoImage(resizedSix)
 resizedSixSmall = diceRollSix.resize((25, 25))
@@ -96,14 +96,21 @@ def reRollCmd():
             i.configure(image=newDice)
             checkChecks.mainScoreList[number] = rndChoice
             linearRegression.placeHolder.append(rndChoice)
+            linearRegression.indexList.append(number)
             smallDiceList[number] = (blahblah[rndChoice - 1][1])
+    print("placeholder")
+    print(linearRegression.placeHolder)
     linearRegression.appending()
-    linearRegression.trackofRolls =- 1 
+    print("placeholder")
+    print(linearRegression.placeHolder)
+    print("roundonedice")
+    print(linearRegression.roundOneDiceHeld)
+    linearRegression.trackofRolls = linearRegression.trackofRolls -  1 
     rerollCounter = rerollCounter - 1
     rerollButton.configure(text="Rerolls Left: " + str(rerollCounter))
-    print(checkChecks.mainScoreList)
     if rerollCounter == 0:
         rerollButton.configure(state=DISABLED)
+        rerollCounter = 3
     confirmButton.configure(state=ACTIVE)
     for x, y in listOfDicePosition:
         x.configure(state=NORMAL)
@@ -128,8 +135,6 @@ def confirmButtonCmd():
                     i.grid(row=0, column=column, padx=3, pady=0)
                     i.create_image(14, 14, image=smallDiceList[h - 1])
                     column += 1
-        rerollCounter = 3
-        rerollButton.configure(state=ACTIVE, text="Roll")
         for x, y in listOfDicePosition:
             x.configure(image=mainDiceImageUnknown, state=DISABLED)
             y.set(FALSE)
@@ -139,13 +144,13 @@ def confirmButtonCmd():
         linearRegression.appending()
         linearRegression.updateLists()
         linearRegression.showStats()
-        print(checkChecks.TotalScore)
-        print(checkChecks.mainScoreList)
         selectionCheck.set(0)
         confirmButton.configure(state=DISABLED)
         totalScore.configure(text="Total Score: "+str(finalScore))
         smallDiceList = [mainUnknownsmall, mainUnknownsmall, mainUnknownsmall, mainUnknownsmall, mainUnknownsmall]
         checkChecks.mainScoreList = [0, 0, 0, 0, 0]
+        rerollCounter = 3
+        rerollButton.configure(state=NORMAL, text="Roll")
         rounds += 1
         if rounds == 13:
             messagebox.askokcancel(message="You're final score is: "+str(finalScore))

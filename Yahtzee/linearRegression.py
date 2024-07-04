@@ -19,21 +19,35 @@ def appending():
   global roundTwoDiceHeld
   global finalRoundDiceHeld
   global trackofRolls
+  global indexList
+  print("index")
+  print(indexList)
+  placeholder2 = []
   if trackofRolls == 3:
     roundOneDiceHeld.extend(placeHolder)
     placeHolder = []
   elif trackofRolls == 2:
     for i in indexList:
-      roundOneDiceHeld.pop(i)
-    roundTwoDiceHeld = placeHolder[:]
+      x = roundOneDiceHeld[i]
+      placeholder2.append(x)
+    for i in placeholder2:
+      roundOneDiceHeld.remove(i)
+    roundTwoDiceHeld.extend(placeHolder)
     placeHolder = []
+    placeholder2 = []
   elif trackofRolls == 1:
     for i in indexList:
-      roundTwoDiceHeld.pop(i)
+      x = roundTwoDiceHeld[i]
+      placeholder2.append(x)
+    for i in placeholder2:
+      roundTwoDiceHeld.remove(i)
     placeHolder = []
+    placeholder2 = []
   elif trackofRolls == 0:
     finalRoundDiceHeld.extend(roundOneDiceHeld)
     finalRoundDiceHeld.extend(roundTwoDiceHeld)
+    trackofRolls = 3
+  indexList = []
 
 
 diceHeld = [] #independent
