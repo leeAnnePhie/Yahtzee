@@ -88,7 +88,6 @@ def reRollCmd():
     for i, x in listOfDicePosition:
         if x.get() == 0:
             keptDice.append(i)
-            linearRegression.placeholder.append(i)
     for i, x in listOfDicePosition:
         if i in keptDice:
             number = listOfDicePosition.index((i, x))
@@ -96,10 +95,13 @@ def reRollCmd():
             newDice = blahblah[rndChoice - 1][0]
             i.configure(image=newDice)
             checkChecks.mainScoreList[number] = rndChoice
+            linearRegression.placeHolder.append(rndChoice)
             smallDiceList[number] = (blahblah[rndChoice - 1][1])
-        else:
+    linearRegression.appending()
+    linearRegression.trackofRolls =- 1 
     rerollCounter = rerollCounter - 1
     rerollButton.configure(text="Rerolls Left: " + str(rerollCounter))
+    print(checkChecks.mainScoreList)
     if rerollCounter == 0:
         rerollButton.configure(state=DISABLED)
     confirmButton.configure(state=ACTIVE)
@@ -108,7 +110,7 @@ def reRollCmd():
 
 
 def confirmButtonCmd():
-    global rerollCounter
+    global rerollCounter5
     global smallDiceList
     global finalScore
     global rounds
@@ -133,9 +135,12 @@ def confirmButtonCmd():
             y.set(FALSE)
         checkChecks.selectionFunctions[checkSelectionVar]()
         finalScore = finalScore + checkChecks.TotalScore
+        linearRegression.trackofRolls = 0
+        linearRegression.appending()
         linearRegression.updateLists()
         linearRegression.showStats()
-        linearRegression.placeholder = []
+        print(checkChecks.TotalScore)
+        print(checkChecks.mainScoreList)
         selectionCheck.set(0)
         confirmButton.configure(state=DISABLED)
         totalScore.configure(text="Total Score: "+str(finalScore))

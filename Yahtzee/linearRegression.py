@@ -6,15 +6,54 @@ import checkChecks
 from tkinter import *
 from tkinter import messagebox
 
-placeholder = []
+placeHolder = []
+roundOneDiceHeld = []
+roundTwoDiceHeld = []
+indexList = []
+trackofRolls = 3
+finalRoundDiceHeld = []
+
+def appending():
+  global placeHolder
+  global roundOneDiceHeld 
+  global roundTwoDiceHeld
+  global finalRoundDiceHeld
+  global trackofRolls
+  if trackofRolls == 3:
+    roundOneDiceHeld.extend(placeHolder)
+    placeHolder = []
+  elif trackofRolls == 2:
+    for i in indexList:
+      roundOneDiceHeld.pop(i)
+    roundTwoDiceHeld = placeHolder[:]
+    placeHolder = []
+  elif trackofRolls == 1:
+    for i in indexList:
+      roundTwoDiceHeld.pop(i)
+    placeHolder = []
+  elif trackofRolls == 0:
+    finalRoundDiceHeld.extend(roundOneDiceHeld)
+    finalRoundDiceHeld.extend(roundTwoDiceHeld)
+
+
 diceHeld = [] #independent
 roundScore = [] #independent 
 
 def updateLists():
-  for i in placeholder:
+  global finalRoundDiceHeld
+  global placeHolder
+  global roundOneDiceHeld 
+  global roundTwoDiceHeld
+  global trackofRolls
+  global diceHeld
+  for i in finalRoundDiceHeld:
     roundScore.append(checkChecks.TotalScore)
     diceHeld.append(i)
-
+  finalRoundDiceHeld = []
+  placeHolder = []
+  roundOneDiceHeld = []
+  roundTwoDiceHeld = []
+  trackofRolls = 3
 
 def visualize(theta, diceHeld, roundScore):
   plt.scatter(diceHeld, roundScore, color = 'g',s = 40)
