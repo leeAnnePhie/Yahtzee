@@ -6,7 +6,7 @@ import checkChecks
 from tkinter import *
 from tkinter import messagebox
 
-placeHolder = []
+placeHolder = [0, 0, 0, 0, 0]
 roundOneDiceHeld = []
 roundTwoDiceHeld = []
 indexList = []
@@ -25,7 +25,6 @@ def appending():
   placeholder2 = []
   if trackofRolls == 3:
     roundOneDiceHeld.extend(placeHolder)
-    placeHolder = []
   elif trackofRolls == 2:
     for i in indexList:
       x = roundOneDiceHeld[i]
@@ -33,7 +32,6 @@ def appending():
     for i in placeholder2:
       roundOneDiceHeld.remove(i)
     roundTwoDiceHeld.extend(placeHolder)
-    placeHolder = []
     placeholder2 = []
   elif trackofRolls == 1:
     for i in indexList:
@@ -41,7 +39,6 @@ def appending():
       placeholder2.append(x)
     for i in placeholder2:
       roundTwoDiceHeld.remove(i)
-    placeHolder = []
     placeholder2 = []
   elif trackofRolls == 0:
     finalRoundDiceHeld.extend(roundOneDiceHeld)
@@ -64,7 +61,7 @@ def updateLists():
     roundScore.append(checkChecks.TotalScore)
     diceHeld.append(i)
   finalRoundDiceHeld = []
-  placeHolder = []
+  placeHolder = [0, 0, 0, 0, 0]
   roundOneDiceHeld = []
   roundTwoDiceHeld = []
   trackofRolls = 3

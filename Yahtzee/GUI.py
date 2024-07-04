@@ -95,7 +95,7 @@ def reRollCmd():
             newDice = blahblah[rndChoice - 1][0]
             i.configure(image=newDice)
             checkChecks.mainScoreList[number] = rndChoice
-            linearRegression.placeHolder.append(rndChoice)
+            linearRegression.placeHolder[number]= (rndChoice)
             linearRegression.indexList.append(number)
             smallDiceList[number] = (blahblah[rndChoice - 1][1])
     print("placeholder")
