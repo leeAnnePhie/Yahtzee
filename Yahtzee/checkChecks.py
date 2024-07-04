@@ -4,7 +4,8 @@ mainScoreList = [0, 0, 0, 0, 0]
 def isFiveKind():
     global TotalScore
     TotalScore = 0
-    if mainScoreList.count(0) == 5:
+    x = mainScoreList[0]
+    if mainScoreList.count(x) == 5:
         TotalScore = 50
 
 
@@ -40,16 +41,18 @@ def isStraight():
 def isShortStraight():
     global TotalScore
     TotalScore = 0
-    shortStraight = set(mainScoreList)
-    if len(shortStraight) < 4:
-        return TotalScore
-    minRange = min(mainScoreList)
-    maxRange = max(mainScoreList) + 1
-    for i in range(minRange, maxRange):
-        if i not in mainScoreList:
-            break
-        elif i == max(mainScoreList):
-            TotalScore = 40
+    shortStraight = mainScoreList
+    shortStraight.sort()
+    if (shortStraight[1] - shortStraight[0] == 1 and
+        shortStraight[2] - shortStraight[1] == 1 and
+        shortStraight[3] - shortStraight[2] == 1):
+        TotalScore = 40
+    elif (shortStraight[4] - shortStraight[3] == 1 and
+          shortStraight[3] - shortStraight[2] == 1 and
+          shortStraight[2] - shortStraight[1] == 1):
+        TotalScore = 40
+    else:
+        TotalScore = 0
 
 
 def isFullHouse():

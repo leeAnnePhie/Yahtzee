@@ -20,8 +20,6 @@ def appending():
   global finalRoundDiceHeld
   global trackofRolls
   global indexList
-  print("index")
-  print(indexList)
   placeholder2 = []
   if trackofRolls == 3:
     roundOneDiceHeld.extend(placeHolder)
@@ -77,15 +75,15 @@ def visualize(theta, diceHeld, roundScore):
   plt.axis((0, max(diceArray), -2, max(roundDice)))
   plt.show()
 
-def predict(theta, x):
-  hey = theta[0] + theta[1] * x
+def predict(theta, diceHeld):
+  hey = theta[0] + theta[1] * diceHeld
   return hey
 
-def fit(x, y, theta, alpha, iter):
+def fit(diceHeld, roundScore, theta, alpha, iter):
   theta = np.zeros(2)
-  x = np.array(x)
-  y = np.array(y)
-  n = len(y+x)
+  diceHeld = np.array(x)
+  roundScore = np.array(y)
+  n = len(diceHeld+roundScore)
   for i in range(iter):
     m_gradient = 0
     b_gradient = 0
@@ -99,3 +97,6 @@ def fit(x, y, theta, alpha, iter):
 
 def showStats():
   messagebox.askokcancel(message="Your Dice Held is: "+str(diceHeld)+"\n and your individual scores are "+str(roundScore))
+
+def showfinalstats():
+  visualize(fit(diceHeld, roundScore, theta, alpha, iter), diceHeld, roundScore)()
