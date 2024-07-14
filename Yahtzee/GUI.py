@@ -1,7 +1,7 @@
 from tkinter import *
 import random
 import checkChecks
-import PIL.Image
+import PIL
 from PIL import Image, ImageTk
 from functools import partial
 from tkinter import messagebox
