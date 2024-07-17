@@ -88,6 +88,7 @@ def reRollCmd():
     for i, x in listOfDicePosition:
         if x.get() == 0:
             keptDice.append(i)
+            linearRegression.placeholder.append(i)
     for i, x in listOfDicePosition:
         if i in keptDice:
             number = listOfDicePosition.index((i, x))
@@ -95,11 +96,7 @@ def reRollCmd():
             newDice = blahblah[rndChoice - 1][0]
             i.configure(image=newDice)
             checkChecks.mainScoreList[number] = rndChoice
-            linearRegression.placeHolder[number]= (rndChoice)
-            linearRegression.indexList.append(number)
             smallDiceList[number] = (blahblah[rndChoice - 1][1])
-    linearRegression.appending()
-    linearRegression.trackofRolls = linearRegression.trackofRolls -  1 
     rerollCounter = rerollCounter - 1
     rerollButton.configure(text="Rerolls Left: " + str(rerollCounter))
     if rerollCounter == 0:
@@ -114,7 +111,6 @@ def confirmButtonCmd():
     global smallDiceList
     global finalScore
     global rounds
-    rerollCounter = 3
     checkSelectionVar = selectionCheck.get()
     if checkSelectionVar == 0:
         messagebox.showwarning(message="Invalid. Select a checkbox.")
@@ -129,25 +125,23 @@ def confirmButtonCmd():
                     i.grid(row=0, column=column, padx=3, pady=0)
                     i.create_image(14, 14, image=smallDiceList[h - 1])
                     column += 1
+        rerollCounter = 3
+        rerollButton.configure(state=ACTIVE, text="Roll")
         for x, y in listOfDicePosition:
             x.configure(image=mainDiceImageUnknown, state=DISABLED)
             y.set(FALSE)
         checkChecks.selectionFunctions[checkSelectionVar]()
-        print(checkChecks.mainScoreList)
         finalScore = finalScore + checkChecks.TotalScore
-        linearRegression.trackofRolls = 0
-        linearRegression.appending()
         linearRegression.updateLists()
+        linearRegression.showStats()
         selectionCheck.set(0)
         confirmButton.configure(state=DISABLED)
         totalScore.configure(text="Total Score: "+str(finalScore))
         smallDiceList = [mainUnknownsmall, mainUnknownsmall, mainUnknownsmall, mainUnknownsmall, mainUnknownsmall]
         checkChecks.mainScoreList = [0, 0, 0, 0, 0]
-        rerollButton.configure(state=NORMAL, text="Roll")
         rounds += 1
         if rounds == 13:
             messagebox.askokcancel(message="You're final score is: "+str(finalScore))
-            linearRegression.showfinalstats()
             playAgain = messagebox.askyesno(message="Want to play again?")
             if playAgain == TRUE:
                 rounds = 0
@@ -362,7 +356,7 @@ rerollButton.grid(row=0, column=0, padx=20, pady=12)
 totalScore = Label(button_frame, text="Total Score: "+str(finalScore))
 totalScore.grid(row=0, column=1, padx=20, pady=6)
 
-confirmButton = Button(button_frame, text="Confirm Selection", command=confirmButtonCmd)
+confirmButton = Button(button_frame, text="Confirm Selection", width=10, command=confirmButtonCmd)
 confirmButton.grid(row=0, column=2, padx=20, pady=12)
 confirmButton.configure(state=DISABLED)
 
