@@ -13,7 +13,7 @@ finalScore = 0
 rounds = 0
 
 root = Tk()
-root.geometry("480x680")
+root.geometry("450x650")
 
 mainSlotOneVar = IntVar()
 mainSlotTwoVar = IntVar()
@@ -22,43 +22,43 @@ mainSlotFiveVar = IntVar()
 mainSlotSixVar = IntVar()
 
 # <editor-fold desc="Dice Images">
-Unknown = (Image.open("questionmark.png"))
+Unknown = (Image.open("Yahtzee\questionmark.png"))
 resizedUnknown = Unknown.resize((70, 70))
 mainDiceImageUnknown = ImageTk.PhotoImage(resizedUnknown)
 resizedUnknownSmall = Unknown.resize((20, 20))
 mainUnknownsmall = ImageTk.PhotoImage(resizedUnknownSmall)
 
-diceRollOne = (Image.open("dice-six-faces-one.png"))
+diceRollOne = (Image.open("Yahtzee\dice-six-faces-one.png"))
 resizedOne = diceRollOne.resize((70, 70))
 mainDiceImageOne = ImageTk.PhotoImage(resizedOne)
 resizedOneSmall = diceRollOne.resize((25, 25))
 mainDiceOnesmall = ImageTk.PhotoImage(resizedOneSmall)
 
-diceRollTwo = (Image.open("dice-six-faces-two.png"))
+diceRollTwo = (Image.open("Yahtzee\dice-six-faces-two.png"))
 resizedTwo = diceRollTwo.resize((70, 70))
 mainDiceImageTwo = ImageTk.PhotoImage(resizedTwo)
 resizedTwoSmall = diceRollTwo.resize((25, 25))
 mainDiceTwosmall = ImageTk.PhotoImage(resizedTwoSmall)
 
-diceRollThree = (Image.open("dice-six-faces-three.png"))
+diceRollThree = (Image.open("Yahtzee\dice-six-faces-three.png"))
 resizedThree = diceRollThree.resize((70, 70))
 mainDiceImageThree = ImageTk.PhotoImage(resizedThree)
 resizedThreeSmall = diceRollThree.resize((25, 25))
 mainDiceThreesmall = ImageTk.PhotoImage(resizedThreeSmall)
 
-diceRollFour = (Image.open("dice-six-faces-four.png"))
+diceRollFour = (Image.open("Yahtzee\dice-six-faces-four.png"))
 resizedFour = diceRollFour.resize((70, 70))
 mainDiceImageFour = ImageTk.PhotoImage(resizedFour)
 resizedFourSmall = diceRollFour.resize((25, 25))
 mainDiceFoursmall = ImageTk.PhotoImage(resizedFourSmall)
 
-diceRollFive = (Image.open("dice-six-faces-five.png"))
+diceRollFive = (Image.open("Yahtzee\dice-six-faces-five.png"))
 resizedFive = diceRollFive.resize((70, 70))
 mainDiceImageFive: PhotoImage = ImageTk.PhotoImage(resizedFive)
 resizedFiveSmall = diceRollFive.resize((25, 25))
 mainDiceFivesmall = ImageTk.PhotoImage(resizedFiveSmall)
 
-diceRollSix = (Image.open("dice-six-faces-six.png"))
+diceRollSix = (Image.open("Yahtzee\dice-six-faces-six.png"))
 resizedSix = diceRollSix.resize((70, 70))
 mainDiceImageSix = ImageTk.PhotoImage(resizedSix)
 resizedSixSmall = diceRollSix.resize((25, 25))
@@ -66,16 +66,16 @@ mainDiceSixsmall = ImageTk.PhotoImage(resizedSixSmall)
 # </editor-fold>
 
 # <editor-fold desc="Frames">
-top_frame = Frame(root, height="550", width="480")
+top_frame = Frame(root, height="520", width="450")
 top_frame.grid(row=0, column=0)
 
 bottom_frame = Frame(root)
 bottom_frame.grid(row=1, column=0)
 
-diceRolls_frame = Frame(bottom_frame, height="100", width="480")
+diceRolls_frame = Frame(bottom_frame, height="100", width="450")
 diceRolls_frame.grid(row=0, column=0)
 
-button_frame = Frame(bottom_frame, height="50", width="480")
+button_frame = Frame(bottom_frame, height="50", width="450")
 button_frame.grid(row=1, column=0)
 
 
@@ -356,13 +356,15 @@ for x, y in selectionList.items():
         i.create_image(14, 14, image=mainUnknownsmall)
         column += 1
 
-rerollButton = Button(button_frame, text="Roll", width=10, command=reRollCmd)
-rerollButton.grid(row=0, column=0, padx=20, pady=12)
+rerollButton = Button(button_frame, text="Roll", width=15, command=reRollCmd)
+rerollButton.grid(row=0, column=0, padx=20, pady=12, sticky=E)
 
 totalScore = Label(button_frame, text="Total Score: "+str(finalScore))
 totalScore.grid(row=0, column=1, padx=20, pady=6)
 
-confirmButton = Button(button_frame, text="Confirm Selection", command=confirmButtonCmd)
+confirmButton = Button(button_frame, text="Confirm Selection", width=15, command=confirmButtonCmd)
+confirmButton.grid(row=0, column=2, padx=20, pady=12, sticky=E)
+confirmButton = Button(button_frame, text="Confirm Selection", width=10, command=confirmButtonCmd)
 confirmButton.grid(row=0, column=2, padx=20, pady=12)
 confirmButton.configure(state=DISABLED)
 
