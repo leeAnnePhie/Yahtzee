@@ -1,7 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy
 import numpy as np
-import checkChecks
 from tkinter import messagebox
 
 placeHolder = [0, 0, 0, 0, 0]
@@ -15,7 +14,13 @@ theta = np.zeros(2)
 diceHeld = []
 roundScore = []
 
-def appending(placeHolder, roundOneDiceHeld, roundTwoDiceHeld, finalRoundDiceHeld, trackofRolls, indexList):
+def appending():
+    global placeHolder
+    global roundOneDiceHeld
+    global roundTwoDiceHeld
+    global finalRoundDiceHeld
+    global trackofRolls
+    global indexList
     placeholder2 = []
     if trackofRolls == 3:
         roundOneDiceHeld.extend(placeHolder)
@@ -38,6 +43,7 @@ def appending(placeHolder, roundOneDiceHeld, roundTwoDiceHeld, finalRoundDiceHel
         finalRoundDiceHeld.extend(roundOneDiceHeld)
         finalRoundDiceHeld.extend(roundTwoDiceHeld)
         trackofRolls = 3
+    indexList = []
 
 
 def updateLists():
@@ -48,7 +54,7 @@ def updateLists():
     global trackofRolls
     global diceHeld
     for i in finalRoundDiceHeld:
-        roundScore.append(checkChecks.TotalScore)
+        #roundScore.append(checkChecks.TotalScore)
         diceHeld.append(i)
     finalRoundDiceHeld = []
     placeHolder = [0, 0, 0, 0, 0]
@@ -62,11 +68,11 @@ def predict(theta, roundScore):
     return hey
 
 
-def visualize(theta, roundScore, diceHeld, xLabel, yLabel, title):
+def visualize(theta, roundScore, diceHeld):
     plt.scatter(roundScore, diceHeld, alpha=0.2, s=10)
-    plt.xlabel(xLabel)
-    plt.ylabel(yLabel)
-    plt.title(title, fontsize=20)
+    plt.xlabel('Score of Round')
+    plt.ylabel('Dice Held')
+    plt.title('Value of Dice Held vs Score of Round', fontsize=20)
     xp = np.array(roundScore)
     yp = theta[0] + theta[1] * xp
     plt.plot(roundScore, yp)
@@ -97,6 +103,6 @@ def showStats():
         message="Your Dice Held is: " + str(diceHeld) + "\n and your individual scores are " + str(roundScore))
 
 
-def showfinalstats(xLabel, yLabel, title):
-    visualize(fit(roundScore, diceHeld, theta, 0.0001, 100), roundScore, diceHeld, xLabel, yLabel, title)
+def showfinalstats():
+    visualize(fit(roundScore, diceHeld, theta, 0.0001, 100), roundScore, diceHeld)
 

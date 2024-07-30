@@ -97,8 +97,9 @@ def reRollCmd():
             checkChecks.mainScoreList[number] = rndChoice
             linearRegression.placeHolder[number]= (rndChoice)
             linearRegression.indexList.append(number)
+            linearRegression.indexList = []
             smallDiceList[number] = (blahblah[rndChoice - 1][1])
-    linearRegression.appending()
+    linearRegression.appending(linearRegression.placeHolder, linearRegression.roundOneDiceHeld, linearRegression.roundTwoDiceHeld, linearRegression.finalRoundDiceHeld, linearRegression.trackofRolls, linearRegression.indexList)
     linearRegression.trackofRolls = linearRegression.trackofRolls -  1 
     rerollCounter = rerollCounter - 1
     rerollButton.configure(text="Rerolls Left: " + str(rerollCounter))
@@ -136,7 +137,7 @@ def confirmButtonCmd():
         print(checkChecks.mainScoreList)
         finalScore = finalScore + checkChecks.TotalScore
         linearRegression.trackofRolls = 0
-        linearRegression.appending()
+        linearRegression.appending(linearRegression.placeHolder, linearRegression.roundOneDiceHeld, linearRegression.roundTwoDiceHeld, linearRegression.finalRoundDiceHeld, linearRegression.trackofRolls, linearRegression.indexList)
         linearRegression.updateLists()
         selectionCheck.set(0)
         confirmButton.configure(state=DISABLED)
@@ -147,7 +148,7 @@ def confirmButtonCmd():
         rounds += 1
         if rounds == 13:
             messagebox.askokcancel(message="You're final score is: "+str(finalScore))
-            linearRegression.showfinalstats()
+            linearRegression.showfinalstats("Score of Round", "Dice Held", "Value of Dice Held vs Score of Round")
             playAgain = messagebox.askyesno(message="Want to play again?")
             if playAgain == TRUE:
                 rounds = 0
